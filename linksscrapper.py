@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # this url from user will get url from the user
-urlFromUser="http://www.google.co.in/"
+urlFromUser="put your link here"
 
 #do not play with this
 url = ''
