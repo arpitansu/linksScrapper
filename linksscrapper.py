@@ -2,10 +2,16 @@ import requests
 from bs4 import BeautifulSoup
 
 # this url from user will get url from the user
-urlFromUser="put your link here"
+urlFromUser="www.devtipsshow.com"
 
 #do not play with this
 url = ''
+
+# this defwill create name of the text file
+def fileNameMaker():
+	Name = urlFromUser.split('.')
+	fileName = Name[1]
+	return fileName
 
 #converting to complete url
 def url(urlFromUser=urlFromUser):
@@ -36,7 +42,7 @@ def collectLink():
 #diiferentiating between the links of same website.
 def findThisSiteLinks():
 	links = collectLink()
-	file = open('links.txt', 'w')
+	file = open(fileNameMaker()+".txt", 'w')
 	for link in links:
 		allLink = link.get('href')
 		if 'http' in allLink:
@@ -49,9 +55,9 @@ def findThisSiteLinks():
 
 #removing duplicate url's
 def removeSameLinks():
-	lines = open('links.txt', 'r').readlines()
+	lines = open(fileNameMaker()+".txt", 'r').readlines()
 	lines_set = set(lines)
-	out  = open('links.txt', 'w')
+	out  = open(fileNameMaker()+".txt", 'w')
 	for line in lines_set:
 	    out.write(line)
 			
