@@ -1,7 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 
-urlFromUser="www.twitter.com"
+
+
+urlFromUser="your domain here" # example www.fb.com , make sure domain contains www.
+
+
+
 url = ''
 
 def url(urlFromUser=urlFromUser):
