@@ -1,24 +1,15 @@
 import requests
+import sys
 from bs4 import BeautifulSoup
 
-# this url from user will get url from the user
-urlFromUser="your url here"
-
-#do not play with this
-url = ''
-
-# this defwill create name of the text file
-def fileNameMaker():
-	Name = urlFromUser.split('.')
-	fileName = Name[1]
-	return fileName
 
 #converting to complete url
-def url(urlFromUser=urlFromUser):
+def url(urlFromUser=sys.argv[1]):	
 	if "http" in urlFromUser[0:4]:
 		url = urlFromUser
 	else:
 		url = "http://" + urlFromUser
+
 	return url
 
 
@@ -39,10 +30,16 @@ def collectLink():
 	findAllLinks = soup.find_all('a')
 	return findAllLinks
 
+def fileNameMaker():
+	Name = url().split('.')
+	fileName = Name[1]
+	return fileName
+
 #diiferentiating between the links of same website.
 def findThisSiteLinks():
+	print ("working , wait for some seconds...")
 	links = collectLink()
-	file = open(fileNameMaker()+".txt", 'w')
+	file = open(fileNameMaker()+".txt", 'a')
 	for link in links:
 		allLink = link.get('href')
 		if 'http' in allLink:
@@ -52,16 +49,20 @@ def findThisSiteLinks():
 			file.write(fullLink)
 			file.write("\n")
 			file.close
+	return
+
 
 #removing duplicate url's
-def removeSameLinks():
+def removeDuplicateLinks():
 	lines = open(fileNameMaker()+".txt", 'r').readlines()
 	lines_set = set(lines)
 	out  = open(fileNameMaker()+".txt", 'w')
 	for line in lines_set:
 	    out.write(line)
+
 			
 
-
-findThisSiteLinks()
-removeSameLinks()
+if __name__ == '__main__':
+	findThisSiteLinks()
+	removeDuplicateLinks()
+	print ("Process completed, Please check %s.txt in the same dir as the programe" %fileNameMaker())
