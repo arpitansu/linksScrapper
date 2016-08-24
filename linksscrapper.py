@@ -38,7 +38,8 @@ def fileNameMaker():
 #diiferentiating between the links of same website.
 def findThisSiteLinks():
 	try:
-		print ("working , wait for some seconds...")
+		print("\n")
+		print ("working , wait for some seconds...\n")
 		links = collectLink()
 		file = open(fileNameMaker()+".txt", 'a')
 		for link in links:
@@ -51,7 +52,8 @@ def findThisSiteLinks():
 				file.write("\n")
 				file.close
 	except:
-		print("something went wrong")
+		print("something went wrong\n")
+		print("Please check if any file created as %s.txt in the same dir as the program" %fileNameMaker()+"\n")
 	return
 
 
@@ -66,27 +68,28 @@ def removeDuplicateLinks():
 	except:
 		print("Duplicate links error : No Links are found in the %s.txt" %fileNameMaker()+"\n")
 
-
 #conver the links to html file 
 def toHtmlFile():
 		lines = open(fileNameMaker()+".txt", 'r').readlines()
 		out  = open(fileNameMaker()+".html", 'w')
 		for line in lines:
-		    out.write("<a target='_blank' href="+line+">"+line+"</a><br/>")
+		    out.write("<a target='_blank' href="+line+">"+line+"</a><br/></br>")
 		print("done")
 			
-
-if __name__ == '__main__':
+def main():
 	findThisSiteLinks()
 	removeDuplicateLinks()
 	print ("Process completed, Please check %s.txt in the same dir as the programe" %fileNameMaker())
 
 	#html file creator
-	print("do you want a html file with links to be created ,press [Y/N] or [y/n]\n")
-	print("or enter to get out of here")
+	print("do you want a html file with links to be created ,press [Y/N] or [y/n], or press enter to get out of here \n")
 	userGave = raw_input()
 	if userGave == 'Y' or userGave == 'y':
 		toHtmlFile()
 	elif userGave == 'N' or userGave == 'n':
 		print("Ok if you wish")
+
+
+if __name__ == '__main__':
+	main()
 
