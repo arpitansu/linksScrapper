@@ -70,9 +70,8 @@ def removeDuplicateLinks():
 #conver the links to html file 
 def toHtmlFile():
 		lines = open(fileNameMaker()+".txt", 'r').readlines()
-		lines_set = set(lines)
 		out  = open(fileNameMaker()+".html", 'w')
-		for line in lines_set:
+		for line in lines:
 		    out.write("<a target='_blank' href="+line+">"+line+"</a><br/>")
 		print("done")
 			
