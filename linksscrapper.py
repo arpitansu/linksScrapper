@@ -57,11 +57,15 @@ def findThisSiteLinks():
 
 #removing duplicate url's
 def removeDuplicateLinks():
-	lines = open(fileNameMaker()+".txt", 'r').readlines()
-	lines_set = set(lines)
-	out  = open(fileNameMaker()+".txt", 'w')
-	for line in lines_set:
-	    out.write(line)
+	try:
+		lines = open(fileNameMaker()+".txt", 'r').readlines()
+		lines_set = set(lines)
+		out  = open(fileNameMaker()+".txt", 'w')
+		for line in lines_set:
+		    out.write(line)
+	except:
+		print("Duplicate links error : No Links are found in the %s.txt" %fileNameMaker()+"\n")
+
 
 			
 
