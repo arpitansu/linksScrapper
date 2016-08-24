@@ -67,9 +67,27 @@ def removeDuplicateLinks():
 		print("Duplicate links error : No Links are found in the %s.txt" %fileNameMaker()+"\n")
 
 
+#conver the links to html file 
+def toHtmlFile():
+		lines = open(fileNameMaker()+".txt", 'r').readlines()
+		lines_set = set(lines)
+		out  = open(fileNameMaker()+".html", 'w')
+		for line in lines_set:
+		    out.write("<a target='_blank' href="+line+">"+line+"</a><br/>")
+		print("done")
 			
 
 if __name__ == '__main__':
 	findThisSiteLinks()
 	removeDuplicateLinks()
 	print ("Process completed, Please check %s.txt in the same dir as the programe" %fileNameMaker())
+
+	#html file creator
+	print("do you want a html file with links to be created ,press [Y/N] or [y/n]\n")
+	print("or enter to get out of here")
+	userGave = raw_input()
+	if userGave == 'Y' or userGave == 'y':
+		toHtmlFile()
+	elif userGave == 'N' or userGave == 'n':
+		print("Ok if you wish")
+
