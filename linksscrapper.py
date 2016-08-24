@@ -85,9 +85,13 @@ def main():
 	print("do you want a html file with links to be created ,press [Y/N] or [y/n], or press enter to get out of here \n")
 	userGave = raw_input()
 	if userGave == 'Y' or userGave == 'y':
-		toHtmlFile()
+		try:
+			toHtmlFile()
+		except:
+			print("something went wrong while creating %s.html file\n" %fileNameMaker())
 	elif userGave == 'N' or userGave == 'n':
 		print("Ok if you wish")
+
 
 
 if __name__ == '__main__':
