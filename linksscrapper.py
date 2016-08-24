@@ -37,18 +37,21 @@ def fileNameMaker():
 
 #diiferentiating between the links of same website.
 def findThisSiteLinks():
-	print ("working , wait for some seconds...")
-	links = collectLink()
-	file = open(fileNameMaker()+".txt", 'a')
-	for link in links:
-		allLink = link.get('href')
-		if 'http' in allLink:
-			continue
-		else:
-			fullLink = url() + allLink
-			file.write(fullLink)
-			file.write("\n")
-			file.close
+	try:
+		print ("working , wait for some seconds...")
+		links = collectLink()
+		file = open(fileNameMaker()+".txt", 'a')
+		for link in links:
+			allLink = link.get('href')
+			if 'http' in allLink:
+				continue
+			else:
+				fullLink = url() + allLink
+				file.write(fullLink)
+				file.write("\n")
+				file.close
+	except:
+		print("something went wrong")
 	return
 
 
